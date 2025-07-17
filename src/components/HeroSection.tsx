@@ -4,9 +4,10 @@ import { Play, MessageCircle, MessageSquare } from 'lucide-react';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -82,8 +83,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
           <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
             Turn WhatsApp Chaos into
           </h1>
-          <div className="text-3xl sm:text-6xl md:text-5xl lg:text-6xl font-bold mb-6 flex items-center justify-center px-4">
-            <span className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent text-center break-words max-w-full">
+          <div className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-6 flex items-center justify-center px-4 ">
+            <span className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent text-center break-words max-w-full leading-tight">
               {currentText}
               <span className="animate-pulse">|</span>
             </span>
@@ -93,7 +94,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               Join the Waitlist

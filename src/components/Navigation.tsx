@@ -6,15 +6,16 @@ interface NavigationProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scrollToSection }) => {
+const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scrollToSection, onJoinWaitlist }) => {
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
             className="flex items-center hover:opacity-80 transition-opacity"
           >
             <img src={img} alt="icon" className="w-[40px] md:w-[40px]  "/>
@@ -36,11 +37,14 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             <button onClick={() => scrollToSection('pricing')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
               Pricing
             </button>
+            <button onClick={() => scrollToSection('faq')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+              FAQ
+            </button>
             <button onClick={() => scrollToSection('blog')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
               Blog
             </button>
             <button
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               Join the Waitlist
@@ -72,6 +76,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             { label: 'Solution', section: 'solution' },
             { label: 'Features', section: 'features' },
             { label: 'Pricing', section: 'pricing' },
+            { label: 'FAQ', section: 'faq' },
             { label: 'Blog', section: 'blog' }
           ].map((item, index) => (
             <button
@@ -86,7 +91,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             </button>
           ))}
           <button
-            onClick={() => scrollToSection('pricing')}
+            onClick={onJoinWaitlist}
             className={`block w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 ${
               isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
             }`}

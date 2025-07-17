@@ -98,7 +98,7 @@ const BlogSection: React.FC = () => {
 
   const handleBlogClick = (id: string) => {
     navigate(`/blog/${id}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   return (

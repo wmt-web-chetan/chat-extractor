@@ -4,9 +4,10 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface PrivacySecuritySectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const PrivacySecuritySection: React.FC<PrivacySecuritySectionProps> = ({ scrollToSection }) => {
+const PrivacySecuritySection: React.FC<PrivacySecuritySectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [privacyRef, privacyInView] = useIntersectionObserver();
 
   const privacyFeatures = [
@@ -134,7 +135,7 @@ const PrivacySecuritySection: React.FC<PrivacySecuritySectionProps> = ({ scrollT
                 You can use WhatsApp Extractor with complete confidence.
               </h3>
               <button 
-                onClick={() => scrollToSection('pricing')}
+                onClick={onJoinWaitlist}
                 className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:shadow-[#874EFF]/25 transform hover:scale-105 transition-all duration-300"
               >
                 Join Waitlist

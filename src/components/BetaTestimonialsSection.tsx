@@ -4,9 +4,10 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface BetaTestimonialsSectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrollToSection }) => {
+const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [testimonialsRef, testimonialsInView] = useIntersectionObserver();
 
   const testimonials = [
@@ -118,7 +119,7 @@ const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrol
               Be among the first to transform your WhatsApp workflow with AI-powered insights.
             </p>
             <button 
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               🚀 Join Beta Waitlist

@@ -11,7 +11,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ onJoinWaitlist }) => {
 
   const handleHomeClick = () => {
     navigate('/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   return (

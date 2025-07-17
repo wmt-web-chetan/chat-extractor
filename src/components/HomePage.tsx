@@ -13,6 +13,7 @@ import HowItWorksSection from './HowItWorksSection';
 import PricingSection from './PricingSection';
 import PrivacySecuritySection from './PrivacySecuritySection';
 import BetaTestimonialsSection from './BetaTestimonialsSection';
+import FAQSection from './FAQSection';
 import BlogSection from './BlogSection';
 import Footer from './Footer';
 
@@ -26,7 +27,7 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     // Scroll to top when component mounts
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
     
     const timer = setTimeout(() => {
       setShowPopup(true);
@@ -100,18 +101,20 @@ const HomePage: React.FC = () => {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         scrollToSection={scrollToSection}
+        onJoinWaitlist={handleJoinWaitlist}
       />
       <div className="overflow-x-hidden">
-      <HeroSection scrollToSection={scrollToSection} />
+      <HeroSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
       
       <VideoSection />
-      <ProblemSection scrollToSection={scrollToSection} />
-      <SolutionSection scrollToSection={scrollToSection} />
-      <HowItWorksSection scrollToSection={scrollToSection} />
+      <ProblemSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
+      <SolutionSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
+      <HowItWorksSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
       <FeaturesSection />
-      <PrivacySecuritySection scrollToSection={scrollToSection} />
-      <BetaTestimonialsSection scrollToSection={scrollToSection} />
+      <PrivacySecuritySection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
+      <BetaTestimonialsSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
       <PricingSection onJoinWaitlist={handleJoinWaitlist} />
+      <FAQSection />
       <BlogSection />
       
       <Footer />

@@ -4,9 +4,10 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface ProblemSectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection }) => {
+const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [problemRef, problemInView] = useIntersectionObserver();
 
   const problems = [
@@ -200,7 +201,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection }) => {
               Transform your WhatsApp experience from overwhelming to organized with AI-powered insights.
             </p>
             <button 
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl hover:shadow-[#874EFF]/25 transform hover:scale-105 transition-all duration-300"
             >
               Join Waitlist

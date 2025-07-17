@@ -630,7 +630,7 @@ const BlogDetail: React.FC = () => {
 
   // Scroll to top when component mounts or id changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [id]);
 
   const handleJoinWaitlist = () => {

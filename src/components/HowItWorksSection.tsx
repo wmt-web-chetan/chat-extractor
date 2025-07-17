@@ -4,9 +4,10 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface HowItWorksSectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ scrollToSection }) => {
+const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [howItWorksRef, howItWorksInView] = useIntersectionObserver();
 
   const steps = [
@@ -118,7 +119,7 @@ const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ scrollToSection }
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Transform Your WhatsApp Experience?</h3>
             <p className="text-gray-600 mb-6">Join thousands of professionals who've already revolutionized their communication workflow.</p>
             <button 
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               Join Waitlist

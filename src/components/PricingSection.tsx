@@ -202,9 +202,10 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onJoinWaitlist }) => {
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 sm:px-8 py-2 sm:py-2 rounded-full text-sm sm:text-sm font-semibold flex items-center gap-2 sm:gap-2 whitespace-nowrap">
-                      <Star className="h-4 w-4 sm:h-4 sm:w-4" />
-                      Free Lifetime Access
+                    <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-4 sm:px-8 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-1 sm:gap-2 whitespace-nowrap">
+                      <Star className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span className="hidden sm:inline">Free Lifetime Access</span>
+                      <span className="sm:hidden">Free Access</span>
                     </div>
                   </div>
                 )}
@@ -248,9 +249,10 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onJoinWaitlist }) => {
             </p>
             <button
               onClick={onJoinWaitlist}
-              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-4 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
-              🚀 Secure My Free Lifetime Access
+              <span className="hidden sm:inline">🚀 Secure My Free Lifetime Access</span>
+              <span className="sm:hidden">🚀 Get Free Access</span>
             </button>
           </div>
         </div>

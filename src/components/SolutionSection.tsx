@@ -4,9 +4,10 @@ import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 interface SolutionSectionProps {
   scrollToSection: (sectionId: string) => void;
+  onJoinWaitlist: () => void;
 }
 
-const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection }) => {
+const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [solutionRef, solutionInView] = useIntersectionObserver();
   const [activeFeature, setActiveFeature] = useState(0);
 
@@ -190,7 +191,7 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection }) =>
               </div>
 
               <button 
-                onClick={() => scrollToSection('pricing')}
+                onClick={onJoinWaitlist}
                 className={`bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-2`}
               >
                 Join Waitlist
@@ -249,7 +250,7 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection }) =>
               Stop drowning in messages and start making informed decisions with AI-powered insights.
             </p>
             <button 
-              onClick={() => scrollToSection('pricing')}
+              onClick={onJoinWaitlist}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-xl text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               Join Waitlist
