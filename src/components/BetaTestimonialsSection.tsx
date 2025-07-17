@@ -65,31 +65,32 @@ const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrol
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`group relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 ${
+              className={`group relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300 ${
                 testimonialsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
+              style={{ 
+                transitionDelay: `${index * 200}ms`,
+                transformStyle: 'preserve-3d',
+                backfaceVisibility: 'hidden'
+              }}
             >
-              {/* Subtle Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl"></div>
-              
               {/* Quote Icon */}
               <div className="absolute -top-4 -left-4">
-                <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-12 h-12 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
-                  <Quote className="h-6 w-6 text-white" />
+                <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-12 h-12 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
+                  <Quote className="h-6 w-6 text-white group-hover:rotate-12 transition-transform duration-300" />
                 </div>
               </div>
 
               {/* Content */}
               <div className="relative pt-4">
                 {/* Quote Text */}
-                <blockquote className="text-lg text-gray-700 leading-relaxed mb-6 group-hover:text-gray-900 transition-colors duration-300">
+                <blockquote className="text-lg text-gray-700 leading-relaxed mb-6 group-hover:text-gray-800 transition-colors duration-300">
                   "{testimonial.content}"
                 </blockquote>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-12 h-12 rounded-full flex items-center justify-center shadow-lg">
+                  <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-12 h-12 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                     <User className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -102,9 +103,6 @@ const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrol
                   </div>
                 </div>
               </div>
-
-              {/* Background Pattern */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.bgGradient} opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-3xl`}></div>
             </div>
           ))}
         </div>
