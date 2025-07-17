@@ -52,6 +52,12 @@ const Footer: React.FC = () => {
           {/* Links Row */}
           <div className="flex justify-center space-x-8 mb-4">
             <Link
+              to="/about"
+              className="text-gray-400 hover:text-[#874EFF] transition-colors duration-300 text-sm"
+            >
+              About Us
+            </Link>
+            <Link
               to="/privacy"
               className="text-gray-400 hover:text-[#874EFF] transition-colors duration-300 text-sm"
             >
