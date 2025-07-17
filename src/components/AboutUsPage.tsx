@@ -3,6 +3,7 @@ import { Heart, Target, Shield, Users, ArrowRight } from 'lucide-react';
 import { X } from 'lucide-react';
 import { submitEmailToGoogleSheets } from '../services/googleSheetsService';
 import BlogHeader from './BlogHeader';
+import Footer from './Footer';
 
 const AboutUsPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
@@ -248,6 +249,8 @@ const AboutUsPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
 
       {/* Modal */}
       {showModal && (
