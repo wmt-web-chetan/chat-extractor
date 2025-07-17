@@ -97,13 +97,15 @@ const PrivacySecuritySection: React.FC<PrivacySecuritySectionProps> = ({ scrollT
           {privacyFeatures.map((feature, index) => (
             <div
               key={index}
-              className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:scale-105 hover:-translate-y-2 ${feature.glowColor} ${
+              className={`group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 shadow-lg transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-[#874EFF]/20 ${
                 privacyInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              style={{ 
+                transitionDelay: `${index * 150}ms`,
+                transformStyle: 'preserve-3d',
+                backfaceVisibility: 'hidden'
+              }}
             >
-              {/* Subtle Hover Glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-3xl"></div>
               
               {/* Content */}
               <div className="relative">

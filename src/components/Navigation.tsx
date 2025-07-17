@@ -16,36 +16,41 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
         <div className="flex justify-between items-center h-16">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
-            className="flex items-center hover:opacity-80 transition-opacity"
+            className="flex items-center hover:opacity-80 transition-opacity focus:outline-none"
+            style={{ backgroundColor: 'transparent', boxShadow: 'none' }}
           >
             <img src={img} alt="icon" className="w-[40px] md:w-[40px]  "/>
-            <span className="ml-2 text-xl font-bold bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent">
+            <span  className="ml-2 text-xl font-bold bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent">
               WhatsApp Extractor
             </span>
           </button>
           
           <div className="hidden lg:flex items-center space-x-8">
-            <button onClick={() => scrollToSection('problem')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+            <button style={{ backgroundColor: 'transparent', boxShadow: 'none' }} onClick={() => scrollToSection('problem')} className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]">
               Problem
             </button>
-            <button onClick={() => scrollToSection('solution')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+            <button style={{ backgroundColor: 'transparent', boxShadow: 'none' }} onClick={() => scrollToSection('solution')} className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]">
               Solution
             </button>
-            <button onClick={() => scrollToSection('features')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
-              Features
-            </button>
-            <button onClick={() => scrollToSection('pricing')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+            <button 
+  onClick={() => scrollToSection('features')} 
+  className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]"
+  style={{ backgroundColor: 'transparent', boxShadow: 'none' }}
+>
+  Features
+</button>
+            <button style={{ backgroundColor: 'transparent', boxShadow: 'none' }} onClick={() => scrollToSection('pricing')} className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]">
               Pricing
             </button>
-            <button onClick={() => scrollToSection('faq')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+            <button style={{ backgroundColor: 'transparent', boxShadow: 'none' }} onClick={() => scrollToSection('faq')} className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]">
               FAQ
             </button>
-            <button onClick={() => scrollToSection('blog')} className="text-gray-700 hover:text-[#874EFF] transition-colors">
+            <button style={{ backgroundColor: 'transparent', boxShadow: 'none' }} onClick={() => scrollToSection('blog')} className="text-gray-700 hover:text-[#874EFF] transition-colors focus:outline-none focus:text-[#874EFF]">
               Blog
             </button>
             <button
               onClick={onJoinWaitlist}
-              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none"
             >
               Join the Waitlist
             </button>
@@ -54,7 +59,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-[#874EFF] transition-colors p-2 rounded-lg hover:bg-gray-100"
+              className="text-gray-700 hover:text-[#874EFF] transition-colors p-2 rounded-lg hover:bg-gray-100 focus:outline-none"
             >
               {isMenuOpen ? (
                 <X className="h-6 w-6 transform transition-transform duration-300 rotate-90" />
@@ -82,7 +87,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             <button
               key={item.section}
               onClick={() => scrollToSection(item.section)}
-              className={`block w-full text-left px-3 py-2 text-gray-700 hover:text-[#874EFF] hover:bg-gray-50 rounded-lg transition-all duration-200 transform ${
+              className={`block w-full text-left px-3 py-2 text-gray-700 hover:text-[#874EFF] hover:bg-gray-50 rounded-lg transition-all duration-200 transform focus:outline-none focus:text-[#874EFF] focus:bg-gray-50 ${
                 isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
               }`}
               style={{ transitionDelay: `${index * 50}ms` }}
@@ -92,7 +97,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
           ))}
           <button
             onClick={onJoinWaitlist}
-            className={`block w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 ${
+            className={`block w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none ${
               isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
             }`}
             style={{ transitionDelay: '250ms' }}

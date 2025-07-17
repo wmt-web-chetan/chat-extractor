@@ -16,9 +16,9 @@ const VideoSection: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="relative rounded-3xl p-1 shadow-2xl">
             {/* Animated gradient border layers */}
-            <div className="absolute inset-0 rounded-3xl animate-gradient-rotate p-1"></div>
+            {/* <div className="absolute inset-0 rounded-3xl animate-gradient-rotate p-1"></div>
             <div className="absolute inset-0 rounded-3xl animate-gradient-spin opacity-60 p-1"></div>
-            <div className="absolute inset-0 rounded-3xl animate-gradient-pulse opacity-40 p-1"></div>
+            <div className="absolute inset-0 rounded-3xl animate-gradient-pulse opacity-40 p-1"></div> */}
             
             {/* Inner border container */}
             <div className="relative bg-gradient-to-br from-[#874EFF] to-[#C83FFF] rounded-3xl p-2 z-10">

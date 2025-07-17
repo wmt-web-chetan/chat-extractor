@@ -65,7 +65,7 @@ const BetaTestimonialsSection: React.FC<BetaTestimonialsSectionProps> = ({ scrol
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`group relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-lg hover:shadow-xl hover:bg-white/90 transition-all duration-300 ${
+              className={`group relative bg-white/80 backdrop-blur-sm border border-white/20 rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:shadow-gray-500/25 hover:bg-white/90 transition-all duration-300 ${
                 testimonialsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ 

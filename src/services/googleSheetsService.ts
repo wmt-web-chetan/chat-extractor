@@ -11,9 +11,23 @@ export const submitEmailToGoogleSheets = async (email: string): Promise<EmailSub
     console.log('Submitting email to Google Sheets:', email);
     console.log('Using URL:', GOOGLE_SHEETS_URL);
 
+    // Create formatted timestamp
+    const now = new Date();
+    const timestamp = now.toLocaleString('en-US', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false,
+      timeZoneName: 'short'
+    });
+
     // Try POST request with FormData first
     const formData = new FormData();
     formData.append('email', email);
+    formData.append('timestamp', timestamp);
 
     const response = await fetch(GOOGLE_SHEETS_URL, {
       method: 'POST',
@@ -41,7 +55,19 @@ export const submitEmailToGoogleSheets = async (email: string): Promise<EmailSub
     // Try GET request with URL parameters as fallback
     try {
       console.log('Trying GET request with URL parameters...');
-      const urlWithParams = `${GOOGLE_SHEETS_URL}?email=${encodeURIComponent(email)}`;
+      // Create timestamp again for GET request
+      const now = new Date();
+      const timestamp = now.toLocaleString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+        timeZoneName: 'short'
+      });
+      const urlWithParams = `${GOOGLE_SHEETS_URL}?email=${encodeURIComponent(email)}&timestamp=${encodeURIComponent(timestamp)}`;
       
       const response = await fetch(urlWithParams, {
         method: 'GET',
