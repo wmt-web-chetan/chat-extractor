@@ -9,6 +9,7 @@ import VideoSection from './VideoSection';
 import ProblemSection from './ProblemSection';
 import SolutionSection from './SolutionSection';
 import FeaturesSection from './FeaturesSection';
+import UseCasesSection from './UseCasesSection';
 import HowItWorksSection from './HowItWorksSection';
 import PricingSection from './PricingSection';
 import PrivacySecuritySection from './PrivacySecuritySection';
@@ -103,12 +104,13 @@ const HomePage: React.FC = () => {
         scrollToSection={scrollToSection}
         onJoinWaitlist={handleJoinWaitlist}
       />
-      <div className="overflow-x-hidden">
-      <HeroSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
+      <div className="!overflow-x-hidden">
+      <HeroSection scrollToSection={scrollToSection} />
       
       <VideoSection />
       <ProblemSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
       <SolutionSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
+      <UseCasesSection />
       <HowItWorksSection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />
       <FeaturesSection />
       <PrivacySecuritySection scrollToSection={scrollToSection} onJoinWaitlist={handleJoinWaitlist} />

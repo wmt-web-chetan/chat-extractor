@@ -1,18 +1,19 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Play, MessageCircle, MessageSquare } from 'lucide-react';
+import { MessageCircle, MessageSquare } from 'lucide-react';
+import ChromeIcon from '../assets/Chrome.svg';
+import EdgeIcon from '../assets/Edge.svg';
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
-  onJoinWaitlist: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   
-  const words = ['Instant Insights', 'Pure Signal', 'Clear Actions'];
+  const words = ['Instant Gist', 'AI Summary', 'Key Points', 'Quick Answer'];
   
   useEffect(() => {
     const word = words[currentWordIndex];
@@ -81,30 +82,31 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection, onJoinWaitli
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h1 className="text-4xl sm:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
-            Turn WhatsApp Chaos into
+            Scrolling Through Chats? Get the...
           </h1>
           <div className="text-3xl sm:text-5xl lg:text-6xl font-bold mb-6 flex items-center justify-center px-4 ">
-            <span className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent text-center break-words max-w-full leading-tight">
+            <span className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent text-center break-words max-w-full leading-snug">
               {currentText}
               <span className="animate-pulse">|</span>
             </span>
           </div>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Drowning in unread messages? WhatsApp Extractor is a powerful Chrome Extension that uses AI to instantly summarize chats from multiple groups, answer your questions, and automate your daily information gathering on WhatsApp Web. Stop scrolling and start understanding.
+            Stop hunting for info. GistGem's AI scans your WhatsApp groups to deliver concise summaries and answers on command, right in your browser. Reclaim your focus.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={onJoinWaitlist}
-              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
             >
-              Join the Waitlist
+              <img src={ChromeIcon} alt="Chrome" className="h-6 w-6" />
+              Add to Chrome 
             </button>
             <button
-              onClick={() => scrollToSection('video')}
-              className="flex items-center justify-center gap-2 border-2 border-[#874EFF] text-[#874EFF] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#874EFF] hover:text-white transition-all duration-300"
+              onClick={() => window.open('https://microsoftedge.microsoft.com/addons', '_blank')}
+              className="flex items-center justify-center gap-3 border-2 border-[#874EFF] text-[#874EFF] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#874EFF] hover:text-white transition-all duration-300"
             >
-              <Play className="h-5 w-5" />
-              Watch Demo
+              <img src={EdgeIcon} alt="Microsoft Edge" className="h-6 w-6" />
+              Get for Microsoft Edge
             </button>
           </div>
         </div>

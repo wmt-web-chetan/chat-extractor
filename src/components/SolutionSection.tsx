@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, MessageSquare, Search, Zap, ArrowRight, Clock, Users, Bot } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
@@ -10,6 +10,19 @@ interface SolutionSectionProps {
 const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
   const [solutionRef, solutionInView] = useIntersectionObserver();
   const [activeFeature, setActiveFeature] = useState(0);
+
+  // Reset active feature if it's the hidden one on mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 768 && activeFeature === 2) {
+        setActiveFeature(0);
+      }
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, [activeFeature]);
 
   const solutions = [
     {
@@ -74,6 +87,19 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection, onJo
     }
   ];
 
+  // Auto-cycle cards on large screens
+  useEffect(() => {
+    const isLargeScreen = window.innerWidth >= 768;
+    
+    if (isLargeScreen) {
+      const interval = setInterval(() => {
+        setActiveFeature((prev) => (prev + 1) % solutions.length);
+      }, 4000); // Change every 4 seconds
+      
+      return () => clearInterval(interval);
+    }
+  }, [solutions.length]);
+
   const currentSolution = solutions[activeFeature];
 
   return (
@@ -112,8 +138,8 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection, onJo
           </p>
         </div>
 
-        {/* Main Demo Section */}
-        <div className={`mb-16 transition-all duration-1000 ${solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '200ms' }}>
+        {/* Main Demo Section - Hidden on mobile */}
+        <div className={`hidden md:block mb-16 transition-all duration-1000 ${solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '200ms' }}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Interactive Demo */}
             <div className="relative">
@@ -202,40 +228,95 @@ const SolutionSection: React.FC<SolutionSectionProps> = ({ scrollToSection, onJo
         </div>
 
         {/* Interactive Solution Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {solutions.map((solution, index) => (
             <div
               key={index}
-              onClick={() => setActiveFeature(index)}
-              className={`cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-2 ${
+              onClick={(e) => {
+                if (window.innerWidth >= 768) {
+                  setActiveFeature(index);
+                }
+              }}
+              className={`md:cursor-pointer bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-200 border-2 ${
                 activeFeature === index 
-                  ? 'border-[#874EFF] ring-4 ring-[#874EFF]/20 scale-105' 
+                  ? 'md:border-[#874EFF] md:ring-4 md:ring-[#874EFF]/20 border-gray-100' 
                   : 'border-gray-100 hover:border-[#874EFF]/30'
               } ${
                 solutionInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${(index + 1) * 200}ms` }}
             >
-              <div className={`bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 ${
-                activeFeature === index ? 'scale-110' : 'group-hover:scale-110'
-              }`}>
-                <solution.icon className="h-7 w-7 text-white" />
-              </div>
-              
-              <h3 className={`text-xl font-bold mb-4 transition-colors duration-300 ${
-                activeFeature === index ? 'text-[#874EFF]' : 'text-gray-900 hover:text-[#874EFF]'
-              }`}>
-                {solution.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed">{solution.description}</p>
+              {/* Demo/Mockup for Mobile - Show on top of each card */}
+              <div className="md:hidden mb-4">
+                <div className="bg-gradient-to-br from-[#874EFF] to-[#C83FFF] rounded-t-2xl p-2">
+                  <div className="bg-white rounded-xl p-4">
+                    {/* Mock WhatsApp Interface */}
+                    <div className="bg-gray-50 rounded-xl p-3 mb-3">
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <MessageSquare className="h-4 w-4 text-white" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">WhatsApp Web</div>
+                          <div className="text-xs text-gray-500">{solution.mockup.subtitle}</div>
+                        </div>
+                        <div className="ml-auto">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        </div>
+                      </div>
+                      
+                      {/* Mock Chat Groups */}
+                      <div className="space-y-1 mb-3">
+                        {solution.mockup.groups.map((group, gIndex) => (
+                          <div key={gIndex} className={`${group.color} p-2 rounded-lg text-xs`}>
+                            <div className="font-medium text-gray-900">{group.name}</div>
+                            <div className="text-gray-600">{group.messages}</div>
+                          </div>
+                        ))}
+                      </div>
 
-              {/* Active Indicator */}
-              {activeFeature === index && (
-                <div className="mt-4 flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#874EFF] rounded-full animate-pulse"></div>
-                  <span className="text-xs font-semibold text-[#874EFF]">Active</span>
+                      {/* Processing Indicator */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 mb-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                          <span className="text-xs text-blue-700">{solution.mockup.processing}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* AI Summary Panel */}
+                    <div className="bg-gradient-to-r from-[#874EFF]/10 to-[#C83FFF]/10 rounded-xl p-3">
+                      <div className="flex items-center gap-2 mb-2">
+                        <solution.icon className="h-4 w-4 text-[#874EFF]" />
+                        <span className="font-semibold text-gray-900 text-sm">{solution.mockup.title}</span>
+                        <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                          {solution.mockup.stat}
+                        </span>
+                      </div>
+                      <div className="text-xs text-gray-700 leading-relaxed">
+                        <strong>AI Response:</strong> {solution.mockup.summary}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              )}
+              </div>
+
+              {/* Card Content */}
+              <div className="p-8">
+                <div className={`bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-14 h-14 rounded-xl flex items-center justify-center mb-6 shadow-lg transition-transform duration-300 ${
+                  activeFeature === index ? 'md:scale-110' : 'md:group-hover:scale-110'
+                }`}>
+                  <solution.icon className="h-7 w-7 text-white" />
+                </div>
+                
+                <h3 className={`text-xl font-bold mb-4 transition-colors duration-300 ${
+                  activeFeature === index ? 'md:text-[#874EFF] text-gray-900' : 'text-gray-900 md:hover:text-[#874EFF]'
+                }`}>
+                  {solution.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">{solution.description}</p>
+
+              </div>
             </div>
           ))}
         </div>

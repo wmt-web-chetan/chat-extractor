@@ -1,13 +1,13 @@
 import React from 'react';
-import { Clock, Search, Eye, AlertTriangle } from 'lucide-react';
+import { Clock, Search, Eye, ScanSearch, AlertTriangle } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import ChromeIcon from '../assets/Chrome.svg';
 
 interface ProblemSectionProps {
   scrollToSection: (sectionId: string) => void;
-  onJoinWaitlist: () => void;
 }
 
-const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoinWaitlist }) => {
+const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection }) => {
   const [problemRef, problemInView] = useIntersectionObserver();
 
   const problems = [
@@ -30,7 +30,7 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoin
       color: "#874EFF"
     },
     {
-      icon: AlertTriangle,
+      icon: ScanSearch,
       title: "Searching Manually",
       description: "Frantically trying to find a specific piece of information you know was shared last week.",
       color: "#874EFF"
@@ -51,8 +51,14 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoin
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${problemInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-6">
-            <span className="text-gray-400 text-sm font-medium tracking-wide uppercase">The Problem</span>
+          <div className="flex items-center justify-center mb-6">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] rounded-full blur-lg opacity-50 animate-pulse"></div>
+              <div className="relative bg-[#f3edff] backdrop-blur-sm border border-[#874EFF]/30 rounded-full px-6 py-3 flex items-center gap-3 shadow-lg">
+                <AlertTriangle className="h-5 w-5 text-[#874EFF] animate-bounce-subtle" />
+                <span className="text-[#874EFF] font-semibold">The Problem</span>
+              </div>
+            </div>
           </div>
           
           <h2 className="text-4xl sm:text-5xl font-bold mb-8 leading-tight">
@@ -68,110 +74,17 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoin
         </div>
 
         {/* Problems Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Column - Visualizations */}
-          <div className="hidden lg:block space-y-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
             {problems.map((problem, index) => (
               <div
                 key={index}
                 className={`transition-all duration-1000 ${
-                  problemInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+                  problemInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                {/* Visualization Card */}
-                <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/30 rounded-2xl p-8 hover:bg-gray-800/50 hover:border-[#874EFF]/30 transition-all duration-500 group">
-                  
-                  {/* Grid Visualization for Scrolling */}
-                  {index === 0 && (
-                    <div className="flex items-center justify-center h-24">
-                      <div className="grid grid-cols-8 gap-1 w-48">
-                        {Array.from({ length: 32 }).map((_, i) => (
-                          <div
-                            key={i}
-                            className={`w-2 h-2 rounded-sm transition-all duration-300 ${
-                              [3, 7, 12, 18, 21, 26, 29].includes(i)
-                                ? 'bg-[#874EFF] animate-pulse'
-                                : 'bg-gray-600/40'
-                            }`}
-                            style={{ animationDelay: `${i * 100}ms` }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Bar Chart for Missing Info */}
-                  {index === 1 && (
-                    <div className="flex items-end justify-center space-x-2 h-24">
-                      {[40, 70, 30, 90, 50, 80, 35, 65].map((height, i) => (
-                        <div
-                          key={i}
-                          className="bg-[#874EFF] rounded-sm w-4 transition-all duration-1000"
-                          style={{
-                            height: `${height}%`,
-                            animationDelay: `${i * 150}ms`
-                          }}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Wave for FOMO */}
-                  {index === 2 && (
-                    <div className="flex items-center justify-center h-24">
-                      <svg width="200" height="80" viewBox="0 0 200 80" className="overflow-visible">
-                        <path
-                          d="M0,40 Q50,20 100,40 T200,40"
-                          stroke="#874EFF"
-                          strokeWidth="3"
-                          fill="none"
-                          className="animate-pulse"
-                        />
-                        <path
-                          d="M0,45 Q50,25 100,45 T200,45"
-                          stroke="#C83FFF"
-                          strokeWidth="2"
-                          fill="none"
-                          className="animate-pulse"
-                          style={{ animationDelay: '0.5s' }}
-                        />
-                      </svg>
-                    </div>
-                  )}
-
-                  {/* Lines for Manual Search */}
-                  {index === 3 && (
-                    <div className="flex items-end justify-center space-x-1 h-24">
-                      {Array.from({ length: 24 }).map((_, i) => (
-                        <div
-                          key={i}
-                          className="bg-[#874EFF] rounded-t-sm w-2 transition-all duration-300"
-                          style={{
-                            height: `${Math.random() * 80 + 20}%`,
-                            animationDelay: `${i * 50}ms`
-                          }}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Right Column - Problem Descriptions */}
-          <div className="space-y-8">
-            {problems.map((problem, index) => (
-              <div
-                key={index}
-                className={`transition-all duration-1000 ${
-                  problemInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-                }`}
-                style={{ transitionDelay: `${index * 200 + 100}ms` }}
-              >
-                <div className="bg-gray-800/20 backdrop-blur-sm border border-gray-700/20 rounded-2xl p-8 hover:bg-gray-800/40 hover:border-[#874EFF]/20 transition-all duration-500 group">
+                <div className="bg-gray-800/20 backdrop-blur-sm border border-gray-700/20 rounded-2xl p-8 hover:bg-gray-800/40 hover:border-[#874EFF]/20 transition-all duration-500 group h-full shadow-lg shadow-gray-900/20 hover:shadow-xl hover:shadow-[#874EFF]/10">
                   <div className="flex items-start gap-4">
                     <div className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
                       <problem.icon className="h-6 w-6 text-white" />
@@ -201,10 +114,11 @@ const ProblemSection: React.FC<ProblemSectionProps> = ({ scrollToSection, onJoin
               Transform your WhatsApp experience from overwhelming to organized with AI-powered insights.
             </p>
             <button 
-              onClick={onJoinWaitlist}
-              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl hover:shadow-[#874EFF]/25 transform hover:scale-105 transition-all duration-300"
+              onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-10 py-4 rounded-xl text-lg font-semibold hover:shadow-xl hover:shadow-[#874EFF]/25 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 mx-auto"
             >
-              Join Waitlist
+              <img src={ChromeIcon} alt="Chrome" className="h-6 w-6" />
+              Add to Chrome
             </button>
           </div>
         </div>

@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
           <div className="flex items-center justify-center mb-4">
             <img src={img} alt="icon" width={50}/>
             <span className="ml-2 text-2xl font-bold bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent">
-              WhatsApp Extractor
+            GistGem
             </span>
           </div>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">

@@ -1,6 +1,7 @@
 import React from 'react';
-import { MessageSquare, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import img from "../assets/logoff.svg"
+import ChromeIcon from '../assets/Chrome.svg';
 
 interface NavigationProps {
   isMenuOpen: boolean;
@@ -21,7 +22,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
           >
             <img src={img} alt="icon" className="w-[40px] md:w-[40px]  "/>
             <span  className="ml-2 text-xl font-bold bg-gradient-to-r from-[#874EFF] to-[#C83FFF] bg-clip-text text-transparent">
-              WhatsApp Extractor
+            GistGem
             </span>
           </button>
           
@@ -49,10 +50,11 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
               Blog
             </button>
             <button
-              onClick={onJoinWaitlist}
-              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none"
+              onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+              className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none flex items-center gap-2"
             >
-              Join the Waitlist
+              <img src={ChromeIcon} alt="Chrome" className="h-4 w-4" />
+              Add to Chrome
             </button>
           </div>
 
@@ -96,13 +98,14 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             </button>
           ))}
           <button
-            onClick={onJoinWaitlist}
-            className={`block w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none ${
+            onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+            className={`w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none flex items-center gap-2 ${
               isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
             }`}
             style={{ transitionDelay: '250ms' }}
           >
-            Join the Waitlist
+            <img src={ChromeIcon} alt="Chrome" className="h-4 w-4" />
+            Add to Chrome
           </button>
         </div>
       </div>
