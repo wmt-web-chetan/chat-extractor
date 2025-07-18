@@ -95,14 +95,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ scrollToSection }) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+              // onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
             >
               <img src={ChromeIcon} alt="Chrome" className="h-6 w-6" />
               Add to Chrome 
             </button>
             <button
-              onClick={() => window.open('https://microsoftedge.microsoft.com/addons', '_blank')}
+              // onClick={() => window.open('https://microsoftedge.microsoft.com/addons', '_blank')}
               className="flex items-center justify-center gap-3 border-2 border-[#874EFF] text-[#874EFF] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#874EFF] hover:text-white transition-all duration-300"
             >
               <img src={EdgeIcon} alt="Microsoft Edge" className="h-6 w-6" />

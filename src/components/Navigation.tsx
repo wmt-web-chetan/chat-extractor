@@ -50,7 +50,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
               Blog
             </button>
             <button
-              onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+              // onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
               className="bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white px-6 py-2 rounded-full hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none flex items-center gap-2"
             >
               <img src={ChromeIcon} alt="Chrome" className="h-4 w-4" />
@@ -98,7 +98,7 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, setIsMenuOpen, scro
             </button>
           ))}
           <button
-            onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
+            // onClick={() => window.open('https://chrome.google.com/webstore', '_blank')}
             className={`w-full text-left px-3 py-2 mt-2 bg-gradient-to-r from-[#874EFF] to-[#C83FFF] text-white rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none flex items-center gap-2 ${
               isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-4 opacity-0'
             }`}
